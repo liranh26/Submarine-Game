@@ -34,4 +34,16 @@ public class BoardGame {
 		System.out.println();
 		}
 	}
+	
+	public char[][] getBoard() {
+		return board;
+	}
+	
+	public int getRows() {
+		return rows;
+	}
+	
+	public int getCols() {
+		return cols;
+	}
 }
