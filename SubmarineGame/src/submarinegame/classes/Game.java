@@ -1,6 +1,10 @@
 package submarinegame.classes;
 
+import java.util.Scanner;
+
 public class Game {
+	
+	private static final int SUBMARINES_NUMBER = 5;
 
 	protected int points;
 	protected int guesses;
@@ -16,6 +20,15 @@ public class Game {
 	
 	public void play()
 	{
-		while (guesses > 0 && points > 0 )
+		Scanner sc = new Scanner(System.in);
+		int x, y;
+		while (guesses > 0 && points > 0 && hits < SUBMARINES_NUMBER)
+		{
+			System.out.println("Enter X coordinate");
+			x = sc.nextInt();
+			System.out.println("Enter y coordinate");
+			y = sc.nextInt();
+			//checkGuess(x,y)
+		}
 	}
 }
