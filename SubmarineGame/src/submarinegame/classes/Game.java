@@ -21,14 +21,30 @@ public class Game {
 	public void play()
 	{
 		Scanner sc = new Scanner(System.in);
-		int x, y;
+		int x, y, currentPoints;
+		boolean hit = false, lastHit = false;
 		while (guesses > 0 && points > 0 && hits < SUBMARINES_NUMBER)
 		{
 			System.out.println("Enter X coordinate");
 			x = sc.nextInt();
 			System.out.println("Enter y coordinate");
 			y = sc.nextInt();
-			//checkGuess(x,y)
+			//hit = checkGuess(x,y)
+			if (hit)
+			{
+				currentPoints = 200;
+				if (lastHit)
+					currentPoints =1000;
+				points += currentPoints;
+				lastHit = true;
+				hits++;
+			}
+			else
+			{
+				lastHit = false;
+				points -= 10;
+			}
+			guesses--;
 		}
 	}
 	
