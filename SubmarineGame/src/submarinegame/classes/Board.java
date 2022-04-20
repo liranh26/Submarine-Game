@@ -4,7 +4,7 @@ public abstract class Board {
 	private int rows = 11;
 	private int cols = 21;
 	private char frameChar='#';
-	private char[][] board;
+	protected char[][] board;
 
 	public Board() {
 		board = new char[rows][cols];
@@ -41,5 +41,14 @@ public abstract class Board {
 
 	}
 
+	public int getRows() {
+		return rows;
+	}
+
+	public int getCols() {
+		return cols;
+	}
+
+	
 	
 }

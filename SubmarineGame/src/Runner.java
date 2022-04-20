@@ -11,7 +11,8 @@ public class Runner {
 //		Board board1 = new TrackerBoard();
 		Board board2 = new BoardGame();
 		
-
+		board2.printBoard();
+		
 //		board1.printBoard();
 		
 

@@ -110,4 +110,10 @@ public class Submarine {
 		return yLength;
 	}
 
+	public int getSize() {
+		return size;
+	}
+	
+	
+
 }
