@@ -14,29 +14,64 @@ public class Submarine {
 		makeSub();
 	}
 
-	
 	public Point[] makeSub() {
-		int counter = 0, i = 1, step;
-		submarine = new Point[size];
-		submarine[0].x = submarine[0].y = 0;
-		while (counter != size - 1) {
+		int i = 1, step, yPreviusStep=0, xPreviusStep=0;
+
+		initializeSub();
+
+		while (i != size) {
 			step = getRandomDirection();
-			submarine[i].y += step;
-			if (submarine[i].y != submarine[i - 1].y) {
-				i++;
-				counter++;
-				xLength++;
-			} else {
-				submarine[i].x += step;
-				if (submarine[i].x != submarine[i - 1].x) {
+			
+			if(step != 0 && step != yPreviusStep) {
+					yStepDirection(step, i);
 					i++;
-					counter++;
-					yLength++;
+					yPreviusStep = step*-1;
+					xPreviusStep=0;
+				} else {
+					
+				step = getRandomDirection();
+				if (step != 0 && step != xPreviusStep) {
+					xStepDirection(step, i);
+					i++;
+					xPreviusStep = step*-1;
+					yPreviusStep=0;
 				}
 			}
 		}
 
 		return submarine;
+	}
+	
+	/**
+	 * this method steps at direction according step value
+	 * @param step value is 1 or -1 
+	 * @param i the index of the point in the points array
+	 */
+	private void yStepDirection(int step, int i) {
+		submarine[i].x += submarine[i-1].x;
+		submarine[i].y += step + submarine[i-1].y;
+		yLength++;
+	}
+	
+	/**
+	 * this method steps at direction according step value
+	 * @param step value is 1 or -1 
+	 * @param i the index of the point in the points array
+	 */
+	private void xStepDirection(int step, int i) {
+		submarine[i].x += step + submarine[i-1].x;
+		submarine[i].y += submarine[i-1].y;
+		xLength++;
+	}
+	
+	/**
+	 * initialize the submarine points array to 0,0
+	 */
+	private void initializeSub() {
+		submarine = new Point[size];
+		for (int i = 0; i < submarine.length; i++) {
+			submarine[i] = new Point();
+		}
 	}
 
 	/**
@@ -59,34 +94,20 @@ public class Submarine {
 		int subSize = rand.nextInt(3) - 1;
 		return subSize;
 	}
-	
-	
+
 	public int subMaxLength() {
-		if(xLength > yLength)
+		if (xLength > yLength)
 			return xLength;
 		else
 			return yLength;
 	}
 
-
 	public int getxLength() {
 		return xLength;
 	}
 
-
 	public int getyLength() {
 		return yLength;
 	}
-	
 
 }
-
-//public void setOnBoard(BoardGame board) {
-//	Random rand = new Random();
-//	int startLocRow = rand.nextInt(board.getRows());
-//	int startLocCol = rand.nextInt(board.getCols());
-//	
-//	locations[0]= new Point(startLocRow, startLocCol);
-//	
-//	int direction = rand.nextInt(4); // 0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT
-//}
