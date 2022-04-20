@@ -4,9 +4,14 @@ import java.awt.Point;
 
 public class Submarine {
 	int size;
-	Point locations;
+	Point[] locations;
 	
-	public Submarine() {
-		// TODO Auto-generated constructor stub
+	public Submarine(int size) {
+		this.size = size;
+		locations = new Point[size];
+	}
+	
+	public void setOnBoard(BoardGame board) {
+		
 	}
 }
