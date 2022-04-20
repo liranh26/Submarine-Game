@@ -1,4 +1,4 @@
-package boardGame;
+package submarinegame.classes;
 
 public class BoardGame {
 	public int rows;
