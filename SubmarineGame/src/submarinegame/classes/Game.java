@@ -16,6 +16,7 @@ public class Game {
 		this.points = 1000;
 		this.guesses = 100;
 		this.hits = 0;
+		this.board = new BoardGame();
 	}
 	
 	public void play()
@@ -25,6 +26,7 @@ public class Game {
 		boolean hit = false, lastHit = false;
 		while (guesses > 0 && points > 0 && hits < SUBMARINES_NUMBER)
 		{
+			board.printBoard();
 			System.out.println("Enter X coordinate");
 			x = sc.nextInt();
 			System.out.println("Enter y coordinate");
