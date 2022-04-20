@@ -1,59 +1,54 @@
 package submarinegame.classes;
 
 public class BoardGame {
-	public int rows;
-	public int cols;
+	private int rows = 11;
+	private int cols = 21;
+	private char frameChar='#';
 	private char[][] board;
 	protected Submarine[] subs;
-	
 
 	public BoardGame() {
+
 		board = new char[rows][cols];
 		initializeBoard();
 		subs = new Submarine[5];
 	}
 
 	private void initializeBoard() {
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		// insert frame to the board
+		for (int i = 0; i < cols; i++) {
+			board[0][i] = frameChar;
+			board[rows - 1][i] = frameChar;
+		}
+		
+		for(int i=0; i < rows; i++) {
+			board[i][0] = frameChar;
+			board[i][cols - 1] = frameChar;
+		}
+		
+		for (int i = 1; i < rows - 1; i++) {
+			for (int j = 1; j < cols - 1; j++) {
 				board[i][j] = ' ';
 			}
 		}
 	}
 
 	public void setSubmarine() {
-		for(int i=0; i<subs.length;i++) {
-			int randomNum = 1 + (int)(Math.random() * 4);
-			subs[i] = new Submarine(randomNum);
+		for (int i = 0; i < subs.length; i++) {
+			subs[i] = new Submarine();
 		}
 	}
 
 	public void printBoard() {
-		for (int i = 0; i < board.length + 2; i++) {
-			if (i == 0 || i == board.length - 1)
-				System.out.println("*");
-			else {
-				for (int j = 0; j < board[i].length + 2; j++) {
-					if (j == 0 || j == board[i].length - 1)
-						System.out.println("*");
-					else {
-						System.out.println(board[i][j]);
-					}
-				}
+		System.out.println("--Submarine BoardGame--");
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				System.out.print(board[i][j]);
 			}
 			System.out.println();
 		}
+
 	}
+
 	
-	public char[][] getBoard() {
-		return board;
-	}
-	
-	public int getRows() {
-		return rows;
-	}
-	
-	public int getCols() {
-		return cols;
-	}
 }
