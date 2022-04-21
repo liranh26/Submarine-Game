@@ -38,6 +38,5 @@ public abstract class Board {
 			}
 			System.out.println();
 		}
-
 	}	
 }
