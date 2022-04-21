@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Submarine {
 	protected int size;
-	protected Point[] submarine;
+	protected Point[] locations;
 	protected int xLength;
 	protected int yLength;
 
@@ -39,7 +39,7 @@ public class Submarine {
 			}
 		}
 
-		return submarine;
+		return locations;
 	}
 	
 	/**
@@ -48,8 +48,8 @@ public class Submarine {
 	 * @param i the index of the point in the points array
 	 */
 	private void yStepDirection(int step, int i) {
-		submarine[i].x += submarine[i-1].x;
-		submarine[i].y += step + submarine[i-1].y;
+		locations[i].x += locations[i-1].x;
+		locations[i].y += step + locations[i-1].y;
 		yLength++;
 	}
 	
@@ -59,8 +59,8 @@ public class Submarine {
 	 * @param i the index of the point in the points array
 	 */
 	private void xStepDirection(int step, int i) {
-		submarine[i].x += step + submarine[i-1].x;
-		submarine[i].y += submarine[i-1].y;
+		locations[i].x += step + locations[i-1].x;
+		locations[i].y += locations[i-1].y;
 		xLength++;
 	}
 	
@@ -68,9 +68,9 @@ public class Submarine {
 	 * initialize the submarine points array to 0,0
 	 */
 	private void initializeSub() {
-		submarine = new Point[size];
-		for (int i = 0; i < submarine.length; i++) {
-			submarine[i] = new Point();
+		locations = new Point[size];
+		for (int i = 0; i < locations.length; i++) {
+			locations[i] = new Point();
 		}
 	}
 
@@ -114,6 +114,8 @@ public class Submarine {
 		return size;
 	}
 	
-	
+	public Point[] getLocations() {
+		return locations;
+	}
 
 }

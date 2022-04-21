@@ -1,30 +1,30 @@
 package submarinegame.classes;
 
 public abstract class Board {
-	private int rows = 11;
-	private int cols = 21;
-	private char frameChar='#';
+	protected static final int BOARD_NUM_OF_COLS = 21;
+	protected static final int BOARD_NUM_OF_ROWS = 11;
+	protected char frameChar='#';
 	protected char[][] board;
 
 	public Board() {
-		board = new char[rows][cols];
+		board = new char[BOARD_NUM_OF_ROWS][BOARD_NUM_OF_COLS];
 		initializeBoard();
 	}
 
 	private void initializeBoard() {
 		// insert frame to the board
-		for (int i = 0; i < cols; i++) {
+		for (int i = 0; i < BOARD_NUM_OF_COLS; i++) {
 			board[0][i] = frameChar;
-			board[rows - 1][i] = frameChar;
+			board[BOARD_NUM_OF_ROWS - 1][i] = frameChar;
 		}
 		
-		for(int i=0; i < rows; i++) {
+		for(int i=0; i < BOARD_NUM_OF_ROWS; i++) {
 			board[i][0] = frameChar;
-			board[i][cols - 1] = frameChar;
+			board[i][BOARD_NUM_OF_COLS - 1] = frameChar;
 		}
 		
-		for (int i = 1; i < rows - 1; i++) {
-			for (int j = 1; j < cols - 1; j++) {
+		for (int i = 1; i < BOARD_NUM_OF_ROWS - 1; i++) {
+			for (int j = 1; j < BOARD_NUM_OF_COLS - 1; j++) {
 				board[i][j] = ' ';
 			}
 		}
@@ -32,23 +32,12 @@ public abstract class Board {
 
 	public void printBoard() {
 		System.out.println("--Submarine BoardGame--");
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (int i = 0; i < BOARD_NUM_OF_ROWS; i++) {
+			for (int j = 0; j < BOARD_NUM_OF_COLS; j++) {
 				System.out.print(board[i][j]);
 			}
 			System.out.println();
 		}
 
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public int getCols() {
-		return cols;
-	}
-
-	
-	
+	}	
 }

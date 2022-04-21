@@ -5,51 +5,52 @@ import java.util.Random;
 
 public class BoardGame extends Board {
 
-	private Submarine[] subs;
+	protected static final int NUMBER_OF_SUBMARINES = 5;
+	protected Submarine[] submarines;
 
 	public BoardGame() {
 		super();
+		initSubmarines();
 		setSubsOnBoard();
 	}
 
-	private void getSubmarines() {
-		subs = new Submarine[5];
-		for (int i = 0; i < subs.length; i++) {
-			subs[i] = new Submarine();
+	private void initSubmarines() {
+		submarines = new Submarine[5];
+		for (int i = 0; i < submarines.length; i++) {
+			submarines[i] = new Submarine();
 		}
 	}
 
+	public Submarine[] getSubmarines() {
+		return submarines;
+	}
+	
 	private void setSubsOnBoard() {
-		int i = 0;
 		Point randPoint;
 
-		getSubmarines();
-
-		do {
+		for (int i = 0; i < NUMBER_OF_SUBMARINES; i++) {
 			randPoint = getRandomPointOnBoard();
-			
-			if(checkValidLocation(randPoint, i)) {
+
+			if (checkValidLocation(randPoint, i)) {
 				insertSubToBoard(randPoint, i);
-				i++;
 			}
-			
-		} while (i < subs.length);
+		}
 	}
 
 	private Point getRandomPointOnBoard() {
 		Point p = new Point();
 		Random rad = new Random();
 		p.x = rad.nextInt(10) + 1;
-		p.x = rad.nextInt(20) + 1;
+		p.y = rad.nextInt(20) + 1;
 		return p;
 	}
 
 	private boolean checkValidLocation(Point randomPoint, int subIndex) {
 		int xtmp, ytmp;
-		for (int i = 0; i < subs[subIndex].getSize(); i++) {
-			xtmp = randomPoint.x + subs[subIndex].submarine[i].x;
-			ytmp = randomPoint.y + subs[subIndex].submarine[i].y;
-			if (xtmp >= getRows() || ytmp >= getCols() || xtmp < 1 || ytmp < 1 || isSubAround(new Point(xtmp, ytmp)))
+		for (int i = 0; i < submarines[subIndex].getSize(); i++) {
+			xtmp = randomPoint.x + submarines[subIndex].locations[i].x;
+			ytmp = randomPoint.y + submarines[subIndex].locations[i].y;
+			if (xtmp >= BOARD_NUM_OF_ROWS || ytmp >= BOARD_NUM_OF_COLS || xtmp < 1 || ytmp < 1 || isSubAround(new Point(xtmp, ytmp)))
 				return false;
 		}
 
@@ -61,17 +62,16 @@ public class BoardGame extends Board {
 			if (board[point.x - 1][point.y + i] == 'S' || board[point.x + i][point.y - 1] == 'S'
 					|| board[point.x + 1][point.y + i] == 'S' || board[point.x + i][point.y + 1] == 'S')
 				return true;
-
 		return false;
 	}
 
 	private void insertSubToBoard(Point p, int subIndex) {
 		int xtmp, ytmp;
-		for (int i = 0; i < subs[subIndex].getSize(); i++) {
-			xtmp = p.x + subs[subIndex].submarine[i].x;
-			ytmp = p.y + subs[subIndex].submarine[i].y;
+		for (int i = 0; i < submarines[subIndex].getSize(); i++) {
+			xtmp = p.x + submarines[subIndex].locations[i].x;
+			ytmp = p.y + submarines[subIndex].locations[i].y;
 			board[xtmp][ytmp] = 'S';
 		}
 	}
-		
-	}
+
+}
