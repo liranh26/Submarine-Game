@@ -1,8 +1,8 @@
 package submarinegame.classes;
 
 public abstract class Board {
-	private int rows = 11;
-	private int cols = 21;
+	private int rows = 12;
+	private int cols = 22;
 	private char frameChar='#';
 	protected char[][] board;
 
@@ -31,7 +31,7 @@ public abstract class Board {
 	}
 
 	public void printBoard() {
-		System.out.println("--Submarine BoardGame--");
+		System.out.println("-Submarine Board Game-");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				System.out.print(board[i][j]);

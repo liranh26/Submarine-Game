@@ -77,7 +77,7 @@ public class Submarine {
 	/**
 	 * creates the length of sub
 	 * 
-	 * @return the sub size
+	 * @return the size between 1 - 4
 	 */
 	public int getRandomSize() {
 		Random rand = new Random();

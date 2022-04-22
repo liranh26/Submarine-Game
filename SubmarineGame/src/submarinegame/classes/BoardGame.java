@@ -40,7 +40,7 @@ public class BoardGame extends Board {
 		Point p = new Point();
 		Random rad = new Random();
 		p.x = rad.nextInt(10) + 1;
-		p.x = rad.nextInt(20) + 1;
+		p.y = rad.nextInt(20) + 1;
 		return p;
 	}
 
@@ -49,7 +49,9 @@ public class BoardGame extends Board {
 		for (int i = 0; i < subs[subIndex].getSize(); i++) {
 			xtmp = randomPoint.x + subs[subIndex].submarine[i].x;
 			ytmp = randomPoint.y + subs[subIndex].submarine[i].y;
-			if (xtmp >= getRows() || ytmp >= getCols() || xtmp < 1 || ytmp < 1 || isSubAround(new Point(xtmp, ytmp)))
+			if (xtmp >= getRows() || ytmp >= getCols() || xtmp < 1 || ytmp < 1)
+				return false;
+			if(isSubAround(new Point(xtmp, ytmp)))
 				return false;
 		}
 
@@ -57,6 +59,7 @@ public class BoardGame extends Board {
 	}
 
 	private boolean isSubAround(Point point) {
+//		this.printBoard();
 		for (int i = -1; i <= 1; i++)
 			if (board[point.x - 1][point.y + i] == 'S' || board[point.x + i][point.y - 1] == 'S'
 					|| board[point.x + 1][point.y + i] == 'S' || board[point.x + i][point.y + 1] == 'S')
