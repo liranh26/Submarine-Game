@@ -21,7 +21,7 @@ public class TrackerBoard extends Board {
 	}
 	
 	protected void markMiss(int x, int y) {
-		board[x][y] = 'M';
+		board[x][y] = 'm';
 	}
 	
 }
