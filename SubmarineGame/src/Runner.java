@@ -15,14 +15,7 @@ public class Runner {
 		board2.printBoard();
 		
 //		board1.printBoard();
-		
-		
-//		Point p = new Point();
-//		Random rad = new Random();
-//		p.x = rad.nextInt(2)+1;
-//		p.y = rad.nextInt(2)+1;
-//		
-//		System.out.println(p);
+
 
 		
 	}

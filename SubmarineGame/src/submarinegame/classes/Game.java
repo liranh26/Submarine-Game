@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
 	
-	private static final int SUBMARINES_NUMBER = 5;
+	public static final int SUBMARINES_NUMBER = 5;
 
 	protected int points;
 	protected int guesses;

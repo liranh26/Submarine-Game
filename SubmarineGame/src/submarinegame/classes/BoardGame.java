@@ -13,7 +13,8 @@ public class BoardGame extends Board {
 	}
 
 	private void getSubmarines() {
-		subs = new Submarine[5];
+		
+		subs = new Submarine[Game.SUBMARINES_NUMBER];
 		for (int i = 0; i < subs.length; i++) {
 			subs[i] = new Submarine();
 		}
@@ -49,7 +50,7 @@ public class BoardGame extends Board {
 		for (int i = 0; i < subs[subIndex].getSize(); i++) {
 			xtmp = randomPoint.x + subs[subIndex].submarine[i].x;
 			ytmp = randomPoint.y + subs[subIndex].submarine[i].y;
-			if (xtmp >= getRows() || ytmp >= getCols() || xtmp < 1 || ytmp < 1)
+			if (xtmp >= getRows()-1 || ytmp >= getCols()-1 || xtmp < 1 || ytmp < 1)
 				return false;
 			if(isSubAround(new Point(xtmp, ytmp)))
 				return false;
