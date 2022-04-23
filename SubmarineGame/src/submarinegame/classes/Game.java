@@ -10,13 +10,15 @@ public class Game {
 	protected int guesses;
 	protected int hits;
 	protected BoardGame board;
+	protected TrackerBoard guessBoard;
 	
 	public Game()
 	{
-		this.points = 1000;
-		this.guesses = 100;
-		this.hits = 0;
-		this.board = new BoardGame();
+		points = 1000;
+		guesses = 100;
+		hits = 0;
+		board = new BoardGame();
+		guessBoard = new TrackerBoard();
 	}
 	
 	public void play()
