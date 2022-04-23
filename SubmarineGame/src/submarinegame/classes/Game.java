@@ -32,8 +32,6 @@ public class Game {
 		while (guesses > 0 && points > 0 && input != "q" && hits != boardGame.getTotalSubsCells()) {
 			printBoardAndScore();
 
-			System.out.println("Enter X and Y coordinate, Or press q to quit.");
-
 			x = getCoordinate('X', sc);
 			if (x == 0)
 				break;
@@ -66,9 +64,9 @@ public class Game {
 
 	private void printBoardAndScore() {
 		guessBoard.printBoard();
-		System.out.print(
+		System.out.println(
 				"Your score is: " + points + ", number of hits is: " + hits + ", number of misses: " + getMisses());
-		System.out.println();
+		System.out.println("Enter X and Y coordinate, Or press q to quit.");
 	}
 
 	public int getMisses() {
