@@ -8,7 +8,7 @@ public class TrackerBoard extends Board {
 	}
 
 	protected boolean checkValidInput(int x, int y) {
-		if (x > 10 || x < 1 || y > 20 || y < 1) {
+		if (x > getRows()-2 || x < 1 || y > getCols()-2 || y < 1) {
 			System.out.println("Your input is not valid, Try again.");
 			return false;
 		}
