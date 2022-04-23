@@ -6,6 +6,7 @@ import java.util.Random;
 public class BoardGame extends Board {
 
 	private Submarine[] subs;
+	private int totalSubsCells = 0;
 
 	public BoardGame() {
 		super();
@@ -13,7 +14,7 @@ public class BoardGame extends Board {
 	}
 
 	private void getSubmarines() {
-		
+
 		subs = new Submarine[Game.SUBMARINES_NUMBER];
 		for (int i = 0; i < subs.length; i++) {
 			subs[i] = new Submarine();
@@ -28,12 +29,12 @@ public class BoardGame extends Board {
 
 		do {
 			randPoint = getRandomPointOnBoard();
-			
-			if(checkValidLocation(randPoint, i)) {
+
+			if (checkValidLocation(randPoint, i)) {
 				insertSubToBoard(randPoint, i);
 				i++;
 			}
-			
+
 		} while (i < subs.length);
 	}
 
@@ -50,9 +51,9 @@ public class BoardGame extends Board {
 		for (int i = 0; i < subs[subIndex].getSize(); i++) {
 			xtmp = randomPoint.x + subs[subIndex].submarine[i].x;
 			ytmp = randomPoint.y + subs[subIndex].submarine[i].y;
-			if (xtmp >= getRows()-1 || ytmp >= getCols()-1 || xtmp < 1 || ytmp < 1)
+			if (xtmp >= getRows() - 1 || ytmp >= getCols() - 1 || xtmp < 1 || ytmp < 1)
 				return false;
-			if(isSubAround(new Point(xtmp, ytmp)))
+			if (isSubAround(new Point(xtmp, ytmp)))
 				return false;
 		}
 
@@ -75,7 +76,15 @@ public class BoardGame extends Board {
 			xtmp = p.x + subs[subIndex].submarine[i].x;
 			ytmp = p.y + subs[subIndex].submarine[i].y;
 			board[xtmp][ytmp] = 'S';
+			totalSubsCells++;
 		}
 	}
-		
+
+	protected int getTotalSubsCells() {
+		return totalSubsCells;
 	}
+
+	protected char getCellValue(int x, int y) {
+		return board[x][y];
+	}
+}

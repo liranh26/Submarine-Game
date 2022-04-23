@@ -1,8 +1,8 @@
 package submarinegame.classes;
 
 public abstract class Board {
-	private int rows = 12;
-	private int cols = 22;
+	private final int rows = 12;
+	private final int cols = 22;
 	private char frameChar='#';
 	protected char[][] board;
 
@@ -48,7 +48,6 @@ public abstract class Board {
 	public int getCols() {
 		return cols;
 	}
-
 	
 	
 }

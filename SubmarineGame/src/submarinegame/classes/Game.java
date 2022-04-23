@@ -6,51 +6,91 @@ public class Game {
 	
 	public static final int SUBMARINES_NUMBER = 5;
 
-	protected int points;
-	protected int guesses;
-	protected int hits;
-	protected BoardGame board;
+	private int points;
+	private final int startGueses = 100;
+	private int guesses;
+	private int hits;
+	protected BoardGame boardGame;
 	protected TrackerBoard guessBoard;
 	
 	public Game()
 	{
 		points = 1000;
-		guesses = 100;
+		guesses = startGueses;
 		hits = 0;
-		board = new BoardGame();
+		boardGame = new BoardGame();
+		boardGame.printBoard();
 		guessBoard = new TrackerBoard();
+		
 	}
 	
 	public void play()
 	{
 		Scanner sc = new Scanner(System.in);
-		int x, y, currentPoints;
-		boolean hit = false, lastHit = false;
-		while (guesses > 0 && points > 0 && hits < SUBMARINES_NUMBER)
+		int currentPoints, x, y;
+		String input= "";
+		boolean lastGuess = false;
+		
+		while (guesses > 0 && points > 0 && input != "q" && hits != boardGame.getTotalSubsCells())
 		{
-			board.printBoard();
-			System.out.println("Enter X coordinate");
-			x = sc.nextInt();
-			System.out.println("Enter y coordinate");
-			y = sc.nextInt();
-			//hit = checkGuess(x,y)
-			if (hit)
+			printBoardAndScore();
+			
+			System.out.println("Enter X and Y coordinate, Or press q to quit.");
+			
+			x = getCoordinate('X', sc);
+			if(x == 0)
+				break;
+			
+			y = getCoordinate('Y', sc);
+			if(y == 0)
+				break;
+			
+			if (checkGuess(x,y))
 			{
+				guessBoard.markHit(x, y);
 				currentPoints = 200;
-				if (lastHit)
+				if (lastGuess)
 					currentPoints =1000;
 				points += currentPoints;
-				lastHit = true;
+				lastGuess = true;
 				hits++;
 			}
 			else
 			{
-				lastHit = false;
+				guessBoard.markMiss(x, y);
+				lastGuess = false;
 				points -= 10;
 			}
 			guesses--;
 		}
+		
+		sc.close();
+	}
+
+	private void printBoardAndScore() {
+		guessBoard.printBoard();
+		System.out.print("Your score is: "+points+", number of hits is: "+hits+", number of misses: "+getMisses());
+		System.out.println();
+	}
+
+	public int getMisses() {
+		return startGueses-guesses-hits;
 	}
 	
+	protected boolean checkGuess(int x, int y) {
+		if (guessBoard.checkValidInput(x, y) && boardGame.getCellValue(x, y) == 'S')
+			return true;
+
+		return false;
+	}
 	
+	protected int getCoordinate(char coordinate, Scanner sc) {
+		String input;
+		System.out.println("Enter "+coordinate+" coordinate");
+		input = sc.next();
+		sc.nextLine();
+		if(input == "q")
+			return 0;
+		return Integer.parseInt(input);
+	}
 }
