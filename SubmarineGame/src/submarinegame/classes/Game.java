@@ -58,7 +58,8 @@ public class Game {
 			}
 			guesses--;
 		}
-
+		
+		System.out.println("Bye Bye!");
 		sc.close();
 	}
 
@@ -84,7 +85,7 @@ public class Game {
 		String input;
 		System.out.println("Enter " + coordinate + " coordinate");
 		input = sc.nextLine();
-		if (input == "q")
+		if (input.equals("q"))
 			return 0;
 
 		return Integer.parseInt(input);
